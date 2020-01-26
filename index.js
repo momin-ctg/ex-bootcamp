@@ -9,10 +9,18 @@ app.use(engine);
 app.set('views', `${__dirname}/views`);
 config({cache: process.env.NODE_ENV === 'production'});
 
-app.get('/test', (req, res) => {
-    let html = fs.readFileSync('./index.html', 'utf-8');
-    res.send(html);
-});
+
+/**
+* Setup Static File
+*/
+
+app.use(express.static("public"));
+
+
+// app.get('/', (req, res) => {
+//     let html = fs.readFileSync('/', 'utf-8');
+//     res.send(html);
+// });
 
 app.get('/articles', (req, res) => {
     let articles = [
@@ -37,8 +45,7 @@ app.get('/articles', (req, res) => {
 
 
 app.get('/', (req, res) => {
-    let {name, age} = req.query;
-    res.render('test', {name, age});
+    res.render("index");
 });
 
 app.use(express.json());
