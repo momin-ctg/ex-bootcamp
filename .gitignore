@@ -213,21 +213,3 @@ fabric.properties
 
 ### Example user template template
 ### Example user template
-
-# IntelliJ project files
-.idea
-*.iml
-out
-gen
-.idea/.gitignore
-.idea/ex_01.iml
-.idea/jsLibraryMappings.xml
-.idea/markdown-navigator-enh.xml
-.idea/markdown-navigator.xml
-.idea/misc.xml
-.idea/modules.xml
-index.html
-index.js
-package.json
-views/
-yarn.lock
