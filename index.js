@@ -22,12 +22,15 @@ app.get('/articles', (req, res) => {
         {id: 2, title: 'title two', body: 'lorem ipsum dolor sit amet'}
     ];
 
-
     app.get('/articles/:id', (req, res) => {
         let {id: articleId} = req.params;
         res.json({articleId, query: req.query})
     });
 
+    app.post('/articles', (req, res) => {
+
+        res.json({msg:"lorem ipsum"})
+    });
 
     res.json(articles)
 });
