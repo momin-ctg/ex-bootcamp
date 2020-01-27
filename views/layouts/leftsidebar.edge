@@ -28,23 +28,22 @@
 
     <div class="row">
 
-      <div class="col-md-8">
-        @!section('page-content')
-      </div>
-
-      
-
-      <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
 
         <!-- Search Widget -->
-  @include('partials.widgets._search')
-  @include('partials.widgets._categories')
+         @include('partials.widgets._search')
+ 
 
         <!-- Categories Widget -->
         
-
+        @include('partials.widgets._categories')
       </div>
+
+      <div class="col-md-8">
+        @!section('page-content')
+      </div>
+      <!-- Sidebar Widgets Column -->
+     
 
     </div>
     <!-- /.row -->
