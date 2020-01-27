@@ -1,7 +1,10 @@
 @layout('layouts.rightsidebar')
 @section('page-content')
 
-  <h1>Lorem ipsum dolor sit amet.</h1>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ipsa nesciunt placeat non, eligendi totam dignissimos quas ea beatae corrupti repellat dolor sint! Vel, cum!</p>
+@each(post in posts)
+
+    @!component('components.article', title=post.title, body=post.body)
+
+@endeach
 
 @endsection

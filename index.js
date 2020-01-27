@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const fs = require('fs');
+const axios = require('axios');
 // Template Engine Support
 const {config, engine} = require('express-edge');
 
@@ -54,8 +55,9 @@ app.get('/services', (req, res) => {
     res.render("pages.services");
 });
 
-app.get('/', (req, res) => {
-    res.render("index");
+app.get('/', async (req, res) => {
+    let {data:posts} = await axios.get('http://jsonplaceholder.typicode.com/posts');
+    res.render("index", {posts});
 });
 
 
