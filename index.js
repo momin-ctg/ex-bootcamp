@@ -44,9 +44,7 @@ app.get('/articles', (req, res) => {
 });
 
 
-app.get('/', (req, res) => {
-    res.render("index");
-});
+
 
 app.get('/contact', (req, res) => {
     res.render("pages.contact");
@@ -56,8 +54,19 @@ app.get('/services', (req, res) => {
     res.render("pages.services");
 });
 
+app.get('/', (req, res) => {
+    res.render("index");
+});
+
+
+app.get('*', (req, res) => {
+    res.render("pages.404");
+});
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+
 let port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log("server working at http://localhost:" + port)
