@@ -1,7 +1,10 @@
 const express = require("express");
+const router = express.Router();
 const app = express();
 const fs = require('fs');
 const axios = require('axios');
+
+
 // Template Engine Support
 const {config, engine} = require('express-edge');
 
@@ -12,8 +15,8 @@ config({cache: process.env.NODE_ENV === 'production'});
 
 
 /**
-* Setup Static File
-*/
+ * Setup Static File
+ */
 
 app.use(express.static("public"));
 
@@ -38,13 +41,11 @@ app.get('/articles', (req, res) => {
 
     app.post('/articles', (req, res) => {
 
-        res.json({msg:"lorem ipsum"})
+        res.json({msg: "lorem ipsum"})
     });
 
     res.json(articles)
 });
-
-
 
 
 app.get('/contact', (req, res) => {
@@ -56,7 +57,7 @@ app.get('/services', (req, res) => {
 });
 
 app.get('/', async (req, res) => {
-    let {data:posts} = await axios.get('http://jsonplaceholder.typicode.com/posts');
+    let {data: posts} = await axios.get('http://jsonplaceholder.typicode.com/posts');
     res.render("index", {posts});
 });
 
@@ -67,7 +68,7 @@ app.get('*', (req, res) => {
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
+app.use(router);
 
 let port = process.env.PORT || 3000;
 app.listen(port, () => {
