@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const app = express();
 const fs = require('fs');
-const axios = require('axios');
+const articleRoutes = require('./routes/articles');
+const pageRoutes = require('./routes/pages');
 
 
 // Template Engine Support
@@ -26,27 +27,27 @@ app.use(express.static("public"));
 //     res.send(html);
 // });
 
-app.get('/articles', (req, res) => {
-    let articles = [
-        {id: 1, title: 'title one', body: 'lorem ipsum dolor sit amet'},
-        {id: 4, title: 'title four', body: 'lorem ipsum dolor sit amet'},
-        {id: 3, title: 'title three', body: 'lorem ipsum dolor sit amet'},
-        {id: 2, title: 'title two', body: 'lorem ipsum dolor sit amet'}
-    ];
 
-    app.get('/articles/:id', (req, res) => {
-        let {id: articleId} = req.params;
-        res.json({articleId, query: req.query})
-    });
-
-    app.post('/articles', (req, res) => {
-
-        res.json({msg: "lorem ipsum"})
-    });
-
-    res.json(articles)
-});
-
+// app.get('/articles', (req, res) => {
+//     let articles = [
+//         {id: 1, title: 'title one', body: 'lorem ipsum dolor sit amet'},
+//         {id: 4, title: 'title four', body: 'lorem ipsum dolor sit amet'},
+//         {id: 3, title: 'title three', body: 'lorem ipsum dolor sit amet'},
+//         {id: 2, title: 'title two', body: 'lorem ipsum dolor sit amet'}
+//     ];
+//
+//     app.get('/articles/:id', (req, res) => {
+//         let {id: articleId} = req.params;
+//         res.json({articleId, query: req.query})
+//     });
+//
+//     app.post('/articles', (req, res) => {
+//
+//         res.json({msg: "lorem ipsum"})
+//     });
+//
+//     res.json(articles)
+// });
 
 app.get('/contact', (req, res) => {
     res.render("pages.contact");
@@ -56,10 +57,6 @@ app.get('/services', (req, res) => {
     res.render("pages.services");
 });
 
-app.get('/', async (req, res) => {
-    let {data: posts} = await axios.get('http://jsonplaceholder.typicode.com/posts');
-    res.render("index", {posts});
-});
 
 
 app.get('*', (req, res) => {
@@ -69,6 +66,8 @@ app.get('*', (req, res) => {
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(router);
+app.use(articleRoutes);
+app.use(pageRoutes);
 
 let port = process.env.PORT || 3000;
 app.listen(port, () => {
