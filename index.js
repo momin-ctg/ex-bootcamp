@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const app = express();
 const fs = require('fs');
-const articleRoutes = require('./routes/articles');
-const pageRoutes = require('./routes/pages');
+const articleRoutes = require("./routes/articles");
+const pageRoutes = require("./routes/pages");
 
 
 // Template Engine Support
@@ -56,7 +56,6 @@ app.get('/contact', (req, res) => {
 app.get('/services', (req, res) => {
     res.render("pages.services");
 });
-
 
 
 app.get('*', (req, res) => {
